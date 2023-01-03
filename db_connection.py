@@ -6,7 +6,7 @@ url = sqlalchemy.engine.URL.create(
     "mssql+pyodbc",
     username="DCTDeveloper",
     password="developer@123",
-    host="122.163.121.176",
+    host="HP-SERVER\MSSQLSERVER02",
     port='3050',
     database="DBDT",
     query={"driver": "ODBC Driver 17 for SQL Server"},

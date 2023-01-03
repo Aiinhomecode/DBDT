@@ -39,7 +39,8 @@ from controller.Data.existing_localsource_dropdown import existing_localsource_d
 from controller.Data.get_target_connection_details import get_target_connection_details
 from controller.Data.save_process_data import insert_process_data
 from controller.Data.details_GET_PROCESS_MASTER import details_GET_PROCESS_MASTER
-
+from controller.Data.run_process import run_process
+from controller.Data.get_process_execution_report import get_process_execution_report
 
 # import handler.err_handler
 
@@ -245,6 +246,16 @@ def save_process_data_():
 @app.route(BASE_URL+'/details_GET_PROCESS_MASTER',methods = ['GET','POST'])
 def details_GET_PROCESS_MASTER_():
     return details_GET_PROCESS_MASTER()
+
+#run process
+@app.route(BASE_URL+'/run-process',methods = ['GET','POST'])
+def run_process_():
+    return run_process()
+
+#process execution report
+@app.route(BASE_URL+'/process-execution-report',methods = ['GET','POST'])
+def get_process_execution_report_():
+    return get_process_execution_report()
     
 
 @app.route("/")

@@ -13,23 +13,24 @@ def insert_process_data():
         sourse_table = request.json['sourse_table']
         targate_name = request.json['targate_name']
         process_json = request.json['process_json']
-        print(user_id)
-        print(process_name)
-        print(sourse_connection )
-        print(sourse_table)
-        print(targate_name)
-        print(process_json)
+        process_json = process_json.replace("'","''").replace('\\','')
+        # print(user_id)
+        # print(process_name)
+        # print(sourse_connection )
+        # print(sourse_table)
+        # print(targate_name)
+        # print(process_json)
         
 
 
         query = f"""EXEC [dbo].[PROCESS_MASTER_DATA] {user_id},'{process_name}','{sourse_connection}','{sourse_table}','{targate_name}','{process_json}'"""
-        print(query)
+        # print(query)
         connection = conn.raw_connection()
         cursor = connection.cursor()
         cursor.execute(query)
         # print(cursor.fetchall())
         result=cursor.fetchall()
-        print(result)
+        # print(result)
         connection.commit()
     
         # result_json2 = result_json.to_json(orient='records', date_format='iso')
