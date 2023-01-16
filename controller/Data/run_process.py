@@ -12,6 +12,7 @@ def run_process():
             cursor = connection.cursor()
             cursor.execute(F"EXEC [RUN_PROCESSOR] {process_master_id}")
             result = cursor.fetchall()
+            print(result)
             if result[0][0] == 'Success':
                 response = {"Status":"Success"}
             else:

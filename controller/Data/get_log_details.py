@@ -6,12 +6,14 @@ import json
 
 def get_log_details():
     try:
-        user_id = request.json['user_id']
-        result_df = pd.read_sql_query(F'EXEC [GET_LOG_DETAILS] {user_id}', con = conn)
+        result_df = pd.read_sql_query(F'EXEC [dbo].[GET_AUDIT_REPORT]', con = conn)
         result_json = result_df.to_json(orient='records', date_format='iso')
+        load_data_df = pd.read_sql_query(F'EXEC [GET_LOG_DETAILS]',con = conn)
+        load_data = load_data_df.to_json(orient='records',date_format='iso')
         result = {
             'status':'Success',
-            'data':json.loads(result_json)
+            'data':json.loads(result_json),
+            'load_data':load_data
         }
         
     except Exception as e:

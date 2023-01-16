@@ -19,7 +19,7 @@ def insert_process_data():
         # print(sourse_connection )
         # print(sourse_table)
         # print(targate_name)
-        # print(process_json)
+        print(process_json)
         
 
 

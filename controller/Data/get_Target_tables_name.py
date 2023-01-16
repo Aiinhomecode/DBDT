@@ -35,12 +35,11 @@ def get_Target_tables_name():
                     user = df['USER'][0]
                     password = df['PASSWORD'][0]
                     db = df['DATABASE'][0]
-
                     mysql_conn = sqlserver_con(host, port, user, password, db)
                     if mysql_conn['status']:
                         new_con = mysql_conn['connection']
-                        df_tables = pd.read_sql("select [TABLE_NAME] from INFORMATION_SCHEMA.TABLES where [TABLE_TYPE]='BASE TABLE'", con = new_con)
-                        df_tables.columns = ['table_name']
+                        df_tables = pd.read_sql("select [TABLE_NAME],[TABLE_SCHEMA] from INFORMATION_SCHEMA.TABLES where [TABLE_TYPE]='BASE TABLE'", con = new_con)
+                        df_tables.columns = ['table_name','table_schema']
                         table_dict = df_tables.to_dict(orient='records')
                         out_data = {
                             "status":"Success",

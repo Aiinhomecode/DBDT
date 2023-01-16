@@ -1,9 +1,11 @@
+# from crypt import methods
 from flask import Flask
 from flask_cors import CORS
 from controller.Auth.user_login import user_login
 from controller.Connection.ftp_test_connection import ftp_test_connection
 from controller.Connection.oracle_db_test_connection import oracle_db_test_connection
 from controller.Connection.azure_blob_test_connection import azure_blob_test_connection
+from controller.Data.GET_DETAILS_PROCESS_MASTER import GET_DETAILS_PROCESS_MASTER
 from controller.Data.test_save_ftp_source import test_save_ftp_source
 from controller.Connection.target_test_connection import target_test_connection
 from controller.Data.save_target_details import save_target_details
@@ -41,7 +43,9 @@ from controller.Data.save_process_data import insert_process_data
 from controller.Data.details_GET_PROCESS_MASTER import details_GET_PROCESS_MASTER
 from controller.Data.run_process import run_process
 from controller.Data.get_process_execution_report import get_process_execution_report
-
+from controller.Data.GET_DETAILS_PROCESS_MASTER import GET_DETAILS_PROCESS_MASTER
+from controller.Data.GET_UPDATE_PROCESS_MASTER import GET_UPDATE_PROCESS_MASTER
+from controller.Data.GET_SERVER_NAME import GET_SERVER_NAME
 # import handler.err_handler
 
 app = Flask(__name__)
@@ -256,7 +260,20 @@ def run_process_():
 @app.route(BASE_URL+'/process-execution-report',methods = ['GET','POST'])
 def get_process_execution_report_():
     return get_process_execution_report()
-    
+#
+@app.route(BASE_URL+'/GET_DETAILS_PROCESS_MASTER',methods = ['GET','POST'])
+def GET_DETAILS_PROCESS_MASTER_():
+    return GET_DETAILS_PROCESS_MASTER()
+
+@app.route(BASE_URL+'/GET_UPDATE_PROCESS_MASTER',methods = ['GET','POST'])
+def GET_UPDATE_PROCESS_MASTER_():
+    return GET_UPDATE_PROCESS_MASTER()
+
+@app.route(BASE_URL+'/getServerName',methods =['GET'])
+def GET_SERVER_NAME_():
+    return GET_SERVER_NAME()
+
+
 
 @app.route("/")
 def rr():
