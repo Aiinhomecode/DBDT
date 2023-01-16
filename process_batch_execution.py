@@ -9,6 +9,7 @@ import numpy as np
 
 def fetch_process_details(process_master_id):
     try:
+        print('su code')
         process_details = pd.read_sql(f"EXEC [GET_PROCESS_DETAILS] {process_master_id}", con = conn)
         target = process_details.iloc[0].TARGET
         source_tables = process_details.iloc[0].SOURSE_TABLE.split(',')
